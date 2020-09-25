@@ -3,6 +3,7 @@
 [ext_resource path="res://Assets/Scripts/audio.gd" type="Script" id=1]
 
 [node name="PopupPanel" type="PopupPanel"]
+visible = true
 margin_right = 250.0
 margin_bottom = 400.0
 script = ExtResource( 1 )

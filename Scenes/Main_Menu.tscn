@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Scenes/Main_Menu.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/SoundSettings.tscn" type="PackedScene" id=2]
 
 [node name="Main_Menu" type="Node"]
 script = ExtResource( 1 )
@@ -61,6 +62,16 @@ margin_top = 100.0
 margin_right = 63.0
 margin_bottom = 120.0
 text = "Exit"
+
+[node name="PopupPanel" parent="." instance=ExtResource( 2 )]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -125.0
+margin_top = -200.0
+margin_right = 125.0
+margin_bottom = 200.0
 [connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer2/Play" to="." method="_on_Play_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer2/Settings" to="." method="_on_Settings_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer2/Exit" to="." method="_on_Exit_pressed"]

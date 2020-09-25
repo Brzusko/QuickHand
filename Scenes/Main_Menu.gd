@@ -7,7 +7,7 @@ func _on_Play_pressed():
 
 
 func _on_Settings_pressed():
-	#get_tree().change_scene("");
+	$PopupPanel.show();
 	pass
 
 
