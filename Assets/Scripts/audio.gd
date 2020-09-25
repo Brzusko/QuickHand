@@ -1,9 +1,8 @@
 extends Node
 
 func _ready():
-	SettingsSound._ready()
-	get_node("MarginContainer/VSplitContainer2/MarginContainer2/VSplitContainer/VBoxContainer/MusicSlider").value = SettingsSound.mVolume()
-	get_node("MarginContainer/VSplitContainer2/MarginContainer2/VSplitContainer/VBoxContainer2/SfxSlider").value = SettingsSound.sfxVolume()
+	get_node("MarginContainer/VSplitContainer2/MarginContainer2/VSplitContainer/VBoxContainer/MusicSlider").value = SettingsSound.getMusicVolume()
+	get_node("MarginContainer/VSplitContainer2/MarginContainer2/VSplitContainer/VBoxContainer2/SfxSlider").value = SettingsSound.getSfxVolume()
 
 func _on_MusicSlider_value_changed(value):
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), value)
