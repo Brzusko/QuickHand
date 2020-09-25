@@ -8,15 +8,25 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "Node",
+"class": "UDP_Service",
+"language": "GDScript",
+"path": "res://Autoload/UDPService.gd"
+} ]
 _global_script_class_icons={
-
+"UDP_Service": ""
 }
 
 [application]
 
 config/name="QuickHand"
+run/main_scene="res://MainScene.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+UDPService="*res://Autoload/UDPService.gd"
 
 [rendering]
 

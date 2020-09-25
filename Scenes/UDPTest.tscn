@@ -1,0 +1,38 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scenes/UDPTest.gd" type="Script" id=1]
+
+[node name="UDPTest" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Buttons" type="VBoxContainer" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Server" type="Button" parent="Buttons"]
+margin_right = 179.0
+margin_bottom = 20.0
+text = "Create Server"
+
+[node name="Client" type="Button" parent="Buttons"]
+margin_top = 24.0
+margin_right = 179.0
+margin_bottom = 44.0
+text = "Create Client"
+
+[node name="Semaphore" type="Button" parent="Buttons"]
+margin_top = 48.0
+margin_right = 179.0
+margin_bottom = 68.0
+text = "Release Semaphore Client"
+[connection signal="pressed" from="Buttons/Server" to="." method="_on_Server_pressed"]
+[connection signal="pressed" from="Buttons/Client" to="." method="_on_Client_pressed"]
+[connection signal="pressed" from="Buttons/Semaphore" to="." method="_on_Semaphore_pressed"]
