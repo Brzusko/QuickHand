@@ -9,7 +9,7 @@ var defaultSettings = {
 	}
 }
 
-var Settings = { }
+var settings = { }
 
 func _ready():
 	load_settings()
@@ -26,7 +26,7 @@ func load_settings():
 	
 	var text = file.get_as_text()
 	
-	Settings = parse_json(text)
+	settings = parse_json(text)
 	
 	file.close()
 
@@ -37,16 +37,16 @@ func save_settings():
 	
 	file.open(path, File.WRITE)
 	
-	file.store_line(to_json(Settings))
+	file.store_line(to_json(settings))
 	
 	file.close()
 
 func reset_settings():
-	Settings = defaultSettings
+	settings = defaultSettings
 	save_settings()
 
 func mVolume():
-	return Settings["sound"]["music_volume"]
+	return settings["sound"]["music_volume"]
 
 func sfxVolume():
-	return Settings["sound"]["sfx_volume"]
+	return settings["sound"]["sfx_volume"]
