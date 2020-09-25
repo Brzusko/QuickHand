@@ -45,8 +45,8 @@ func reset_settings():
 	settings = defaultSettings
 	save_settings()
 
-func getMusicVolume():
+func get_music_volume():
 	return settings["sound"]["music_volume"]
 
-func getSfxVolume():
+func get_sfx_volume():
 	return settings["sound"]["sfx_volume"]
