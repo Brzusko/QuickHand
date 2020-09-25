@@ -1,6 +1,6 @@
-extends Node
+extends Control
 
-func _on_Popup_button_pressed():
+func _on_PopupButton_pressed():
 	var popup = get_node("PopupPanel")
 	if (popup.visible):
 		popup.visible = false
