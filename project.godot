@@ -21,6 +21,7 @@ config/icon="res://icon.png"
 [autoload]
 
 SettingsSound="*res://Autoload/settings_sound.gd"
+NotificationNode="*res://Autoload/NotificationNode.tscn"
 
 [rendering]
 

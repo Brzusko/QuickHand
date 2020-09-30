@@ -1,0 +1,44 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scenes/test2.gd" type="Script" id=1]
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Error" type="Button" parent="."]
+margin_left = 4.48987
+margin_top = 122.348
+margin_right = 83.4899
+margin_bottom = 152.348
+text = "Error"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Info" type="Button" parent="."]
+margin_left = 4.48987
+margin_top = 152.655
+margin_right = 83.4899
+margin_bottom = 182.655
+text = "Info"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Success" type="Button" parent="."]
+margin_left = 4.48987
+margin_top = 184.084
+margin_right = 83.4899
+margin_bottom = 214.084
+text = "Success"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="Error" to="." method="_on_Error_pressed"]
+[connection signal="pressed" from="Info" to="." method="_on_Info_pressed"]
+[connection signal="pressed" from="Success" to="." method="_on_Success_pressed"]
