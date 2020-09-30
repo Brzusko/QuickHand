@@ -1,6 +1,6 @@
 extends MarginContainer
 
-enum Enum {NONE, ERROR, INFO, SUCCESS}
+enum Enum {ERROR, INFO, SUCCESS}
 var time = 5
 
 func start():
@@ -15,7 +15,7 @@ func start():
 	notification_duration.start()
 	while(!notification_duration.is_stopped()):
 		if get_parent():
-			yield(get_tree().create_timer(0.01), "timeout")
+			yield(get_tree().create_timer(0.001), "timeout")
 		else: return
 		get_node("VBoxContainer/ProgressBar").value = notification_duration.time_left
 		
@@ -29,12 +29,12 @@ func start():
 		get_parent().remove_child(self)
 	else: return
 
-func show_notification(gText, duration, type):
+func modify_panel(gText, duration, notification_type):
 	get_node("VBoxContainer/HBoxContainer/VBoxContainer/Text").text = gText
 	if duration > 0:
 		time = duration
 	var background_color = StyleBoxFlat.new()
-	match type:
+	match notification_type:
 		Enum.ERROR:
 			background_color.set_bg_color(Color(0.717647, 0.184314, 0.184314))
 			get_node("Panel").set("custom_styles/panel", background_color)
@@ -50,4 +50,3 @@ func show_notification(gText, duration, type):
 			get_node("Panel").set("custom_styles/panel", background_color)
 			get_node("VBoxContainer/HBoxContainer/CenterContainer/TextureRect").texture = load("res://Assets/Textures/succ.png")
 			get_node("VBoxContainer/HBoxContainer/VBoxContainer/Title").text = "Success"
-	start()

@@ -1,59 +1,44 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://Scenes/tst.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/test2.gd" type="Script" id=1]
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-script = ExtResource( 3 )
+script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="Success" type="Button" parent="."]
-margin_left = 4.82162
-margin_top = 144.0
-margin_right = 67.8216
-margin_bottom = 164.0
-text = "Success"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Info" type="Button" parent="."]
-margin_left = 5.0
-margin_top = 122.0
-margin_right = 68.0
-margin_bottom = 142.0
-text = "Info"
 
 [node name="Error" type="Button" parent="."]
-margin_left = 5.0
-margin_top = 99.0
-margin_right = 68.0
-margin_bottom = 119.0
+margin_left = 4.48987
+margin_top = 122.348
+margin_right = 83.4899
+margin_bottom = 152.348
 text = "Error"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-margin_left = 749.0
-margin_top = 17.0
-margin_right = 999.0
-margin_bottom = 588.0
-alignment = 2
+[node name="Info" type="Button" parent="."]
+margin_left = 4.48987
+margin_top = 152.655
+margin_right = 83.4899
+margin_bottom = 182.655
+text = "Info"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Tree" type="Button" parent="."]
-margin_left = 20.2043
-margin_top = 181.839
-margin_right = 68.2043
-margin_bottom = 218.839
-text = "Tree"
-[connection signal="pressed" from="Success" to="." method="_on_Success_pressed"]
-[connection signal="pressed" from="Info" to="." method="_on_Info_pressed"]
+[node name="Success" type="Button" parent="."]
+margin_left = 4.48987
+margin_top = 184.084
+margin_right = 83.4899
+margin_bottom = 214.084
+text = "Success"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="pressed" from="Error" to="." method="_on_Error_pressed"]
-[connection signal="pressed" from="Tree" to="." method="_on_Tree_pressed"]
+[connection signal="pressed" from="Info" to="." method="_on_Info_pressed"]
+[connection signal="pressed" from="Success" to="." method="_on_Success_pressed"]
