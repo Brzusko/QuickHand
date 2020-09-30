@@ -1,28 +1,38 @@
 extends MarginContainer
 
 enum Enum {NONE, ERROR, INFO, SUCCESS}
+var time = 5
 
 func start():
-	var timer = get_node("Timer")
+	var notification_duration = get_node("NotificationDuration")
+	notification_duration.wait_time = time
+	get_node("VBoxContainer/ProgressBar").max_value = time
 	var tween = get_node("Tween")
 	
 	tween.interpolate_property(get_node("."), "modulate", Color(1, 1, 1, 0), Color(1, 1, 1), 0.5)
 	tween.start()
 	
-	timer.start()
-	while(!timer.is_stopped()):
-		yield(get_tree().create_timer(0.01),"timeout")
-		get_node("VBoxContainer/ProgressBar").value = timer.time_left/5
+	notification_duration.start()
+	while(!notification_duration.is_stopped()):
+		if get_parent():
+			yield(get_tree().create_timer(0.01), "timeout")
+		else: return
+		get_node("VBoxContainer/ProgressBar").value = notification_duration.time_left
 		
 	tween.interpolate_property(get_node("."), "modulate", Color(1, 1, 1), Color(1, 1, 1, 0), 0.5)
 	tween.start()
 	
-	yield(get_tree().create_timer(0.5),"timeout")
-	get_parent().remove_child(self)
+	if get_parent():
+		yield(get_tree().create_timer(0.5),"timeout")
+	else: return
+	if get_parent():
+		get_parent().remove_child(self)
+	else: return
 
-func show_notification(gText, type):
+func show_notification(gText, duration, type):
 	get_node("VBoxContainer/HBoxContainer/VBoxContainer/Text").text = gText
-	get_node(".").visible = true
+	if duration > 0:
+		time = duration
 	var background_color = StyleBoxFlat.new()
 	match type:
 		Enum.ERROR:

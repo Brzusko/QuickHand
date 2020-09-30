@@ -3,10 +3,10 @@
 [ext_resource path="res://Scenes/notif.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Textures/warning.png" type="Texture" id=2]
 
-[sub_resource type="StyleBoxFlat" id=4]
+[sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 1, 1, 1, 0.352941 )
 
-[sub_resource type="StyleBoxFlat" id=3]
+[sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 0, 0, 0, 0 )
 
 [node name="Margin" type="MarginContainer"]
@@ -24,7 +24,7 @@ __meta__ = {
 margin_right = 250.0
 margin_bottom = 100.0
 
-[node name="Timer" type="Timer" parent="."]
+[node name="NotificationDuration" type="Timer" parent="."]
 wait_time = 5.0
 one_shot = true
 
@@ -85,6 +85,7 @@ margin_right = 182.0
 margin_bottom = 60.0
 size_flags_vertical = 9
 text = "Dis is error text"
+autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -95,8 +96,8 @@ margin_right = 250.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 0, 7 )
 size_flags_horizontal = 3
-custom_styles/fg = SubResource( 4 )
-custom_styles/bg = SubResource( 3 )
+custom_styles/fg = SubResource( 1 )
+custom_styles/bg = SubResource( 2 )
 max_value = 1.0
 value = 1.0
 percent_visible = false
