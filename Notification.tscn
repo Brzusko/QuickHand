@@ -1,0 +1,106 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scenes/notif.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Textures/warning.png" type="Texture" id=2]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 1, 1, 1, 0.352941 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0, 0, 0, 0 )
+
+[node name="Margin" type="MarginContainer"]
+margin_right = 250.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 250, 100 )
+size_flags_horizontal = 3
+size_flags_vertical = 0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="."]
+margin_right = 250.0
+margin_bottom = 100.0
+
+[node name="NotificationDuration" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_right = 250.0
+margin_bottom = 100.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_right = 250.0
+margin_bottom = 89.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer"]
+margin_right = 10.0
+margin_bottom = 89.0
+rect_min_size = Vector2( 10, 0 )
+
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer/HBoxContainer"]
+margin_left = 14.0
+margin_right = 64.0
+margin_bottom = 89.0
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer/CenterContainer"]
+margin_top = 19.0
+margin_right = 50.0
+margin_bottom = 69.0
+rect_min_size = Vector2( 50, 50 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource( 2 )
+expand = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
+margin_left = 68.0
+margin_right = 250.0
+margin_bottom = 89.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Title" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
+margin_top = 28.0
+margin_right = 182.0
+margin_bottom = 42.0
+text = "Error"
+
+[node name="Text" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
+margin_top = 46.0
+margin_right = 182.0
+margin_bottom = 60.0
+size_flags_vertical = 9
+text = "Dis is error text"
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ProgressBar" type="ProgressBar" parent="VBoxContainer"]
+margin_top = 93.0
+margin_right = 250.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 0, 7 )
+size_flags_horizontal = 3
+custom_styles/fg = SubResource( 1 )
+custom_styles/bg = SubResource( 2 )
+max_value = 1.0
+value = 1.0
+percent_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
