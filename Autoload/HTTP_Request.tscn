@@ -8,5 +8,8 @@ script = ExtResource( 1 )
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
 
 [node name="Server_Registration" type="HTTPRequest" parent="."]
+
+[node name="Server_Ping" type="HTTPRequest" parent="."]
 [connection signal="request_completed" from="HTTPRequest" to="." method="_on_HTTPRequest_request_completed"]
 [connection signal="request_completed" from="Server_Registration" to="." method="_on_Server_Registration_request_completed"]
+[connection signal="request_completed" from="Server_Ping" to="." method="_on_Server_Ping_request_completed"]
