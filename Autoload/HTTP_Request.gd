@@ -1,7 +1,7 @@
 extends Node2D
 
 var dict = {}
-signal request_complete
+signal request_complete(is_failed)
 signal function_complete(outputs)
 
 #Server registration
@@ -24,16 +24,21 @@ func _on_Server_Registration_request_completed(result, response_code, headers, b
 
 func get_server_list():
 	$HTTPRequest.request("http://52.169.226.95/servers/QuickHand",[],false,HTTPClient.METHOD_GET);
-	yield(self, "request_complete")
-	emit_signal("function_complete", dict.result)
+	if not yield(self, "request_complete"):
+		emit_signal("function_complete", dict.result)
+	else:
+		emit_signal("function_complete")
 
 func _on_HTTPRequest_request_completed(result, response_code, headers, body):
-	if(response_code == 200): 
+	if response_code == 200: 
 		dict = JSON.parse(body.get_string_from_utf8());
 		if (dict.error != OK):
 			print("Something goes wrong with parsing data");
+			emit_signal("request_complete", true)
 			return;
 		#print("Write ",dict.result);
-		emit_signal("request_complete")
-	pass
+		emit_signal("request_complete", false)
+	else:
+		print("Connection error: ",response_code)
+		emit_signal("request_complete", true)
 
