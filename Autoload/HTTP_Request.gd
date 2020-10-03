@@ -1,5 +1,9 @@
 extends Node2D
 
+var dict = {}
+signal request_complete
+signal function_complete(outputs)
+
 #Server registration
 func register_server():
 	var data = {
@@ -18,22 +22,18 @@ func _on_Server_Registration_request_completed(result, response_code, headers, b
 	print(body.get_string_from_utf8());
 	pass
 
-
-
-
-func make_request():
+func get_server_list():
 	$HTTPRequest.request("http://52.169.226.95/servers/QuickHand",[],false,HTTPClient.METHOD_GET);
-	pass
+	yield(self, "request_complete")
+	emit_signal("function_complete", dict.result)
 
 func _on_HTTPRequest_request_completed(result, response_code, headers, body):
-	if(response_code == 200):
-		var dict = {}
+	if(response_code == 200): 
 		dict = JSON.parse(body.get_string_from_utf8());
 		if (dict.error != OK):
 			print("Something goes wrong with parsing data");
 			return;
-		#print(dict.result);
+		#print("Write ",dict.result);
+		emit_signal("request_complete")
 	pass
-
-
 

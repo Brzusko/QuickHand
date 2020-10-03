@@ -21,10 +21,10 @@ config/icon="res://icon.png"
 [autoload]
 
 SettingsSound="*res://Autoload/settings_sound.gd"
-
 HTTP_Request="*res://Autoload/HTTP_Request.tscn"
 HTTP_Request_gd="*res://Autoload/HTTP_Request.gd"
 NotificationNode="*res://Autoload/NotificationNode.tscn"
+FileIo="*res://Autoload/file_io.gd"
 
 [rendering]
 
