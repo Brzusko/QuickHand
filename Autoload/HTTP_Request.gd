@@ -1,5 +1,27 @@
 extends Node2D
 
+#Server creation
+func create_server():
+	var server_port = 7171;
+	var max_slots = 2;
+	
+	var peer = NetworkedMultiplayerENet.new();
+	peer.create_server(server_port, max_slots);
+	get_tree().network_peer = peer
+	
+	register_server("127.0.0.1",server_port,"Testing",max_slots,3);
+	
+	pass
+
+#Client creation
+func create_client():
+	
+	var peer = NetworkedMultiplayerENet.new()
+	peer.create_client("127.0.0.1", 7171)
+	get_tree().network_peer = peer
+	
+	pass
+
 #Server registration
 func register_server(address,port,s_name,players,count):
 	
@@ -27,13 +49,16 @@ func _on_Server_Registration_request_completed(result, response_code, headers, b
 	
 	#Json error test
 	if (dict.error != OK):
-		NotificationNode.show_notification("Something goes wrong with parsing data",10,0);
+		print(dict);
+		NotificationNode.show_notification("Something goes wrong with parsing data on registration",10,0);
 		return;
 	
 	#Notification from server
 	match dict.result["message"]:
 		"ADDED":
 			NotificationNode.show_notification("Succesfuly registered server",10,2);
+			server_ping("127.0.0.1",7171);
+			$Ping.start();
 		"FAILED_TO_ADD":
 			NotificationNode.show_notification("Failed to register server",10,0);
 		"MASTER_SERVER_NOT_FOUND":
@@ -60,15 +85,49 @@ func _on_HTTPRequest_request_completed(result, response_code, headers, body):
 
 
 
-func server_ping(ip,port,players):
+func server_ping(ip,port):
+	
+	var data = {
+		"players": [
+			{"player_name": "Test 1", "id": 1231},
+			{"player_name": "Test 2", "id": 12331}
+	]
+	};
+	
+	#print(data.players);
 	
 	#Players dictionary to json
-	var query = JSON.print(players);
+	var query = JSON.print(data);
 	
 	#Sending request
-	$Server_Registration.request("http://52.169.226.95/servers/update_server/QuickHand/"+ip+"/"+port,["Content-Type: application/json"],false,HTTPClient.METHOD_POST,query);
+	$Server_Ping.request("http://52.169.226.95/servers/update_server/QuickHand/"+str(ip)+"/"+str(port),["Content-Type: application/json"],false,HTTPClient.METHOD_POST,query);
 	pass;
 
 func _on_Server_Ping_request_completed(result, response_code, headers, body):
 	
+	
+	#Json to dictionary
+	var dict = {}
+	dict = JSON.parse(body.get_string_from_utf8());
+	print(dict.result);
+	
+	#Json error test
+	if (dict.error != OK):
+		NotificationNode.show_notification("Something goes wrong with parsing data on update",10,0);
+		return;
+	
+	#Notification from server
+	match dict.result["message"]:
+		"SERVER_UPDATED":
+			NotificationNode.show_notification("Server updated",10,2);
+		"SERVER_NOT_FOUND":
+			NotificationNode.show_notification("Server not found",10,0);
+		"MASTER_SERVER_NOT_FOUND":
+			NotificationNode.show_notification("Master server not found",10,0);
+		"MISSING_DATA_IN_DICTIONARY":
+			NotificationNode.show_notification("Missing data in dictionary",10,0);
+	pass
+
+func _on_Ping_timeout():
+	server_ping("127.0.0.1",7171);
 	pass
