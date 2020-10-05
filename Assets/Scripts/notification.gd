@@ -1,7 +1,7 @@
 extends Node
 
 var notification_panel = load("res://Scenes/NotificationPanel.tscn")
-onready var box = get_node("VBoxContainer")
+onready var box = get_node("CanvasLayer/VBoxContainer")
 
 func show_notification(text, duration, notification_type):
 	if box.get_child_count() == 5:

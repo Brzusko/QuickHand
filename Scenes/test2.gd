@@ -14,4 +14,5 @@ func _on_Info_pressed():
 
 func _on_Success_pressed():
 	NotificationNode.show_notification("lol text", 2, Enum.SUCCESS)
+	get_node(".").print_tree_pretty()
 	pass # Replace with function body.

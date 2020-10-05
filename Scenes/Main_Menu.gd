@@ -2,7 +2,8 @@ extends Node
 
 
 func _on_Play_pressed():
-	#get_tree().change_scene("");
+	var test = load("res://Scenes/test3.tscn").instance()
+	get_node(".").add_child_below_node(get_node("PopupPanel"), test, true)
 	pass
 
 

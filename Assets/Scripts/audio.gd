@@ -14,6 +14,8 @@ func _on_SfxSlider_value_changed(value):
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("SFX"), value)
 	SettingsSound.settings["sound"]["sfx_volume"] = value
 	SettingsSound.save_settings()
+	if get_parent().get_node("PopupPanel").visible == true:
+		get_node("AudioStreamPlayer").play()
 	pass # Replace with function body.
 
 func _on_ExitButton_pressed():

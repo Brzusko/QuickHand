@@ -23,6 +23,9 @@ __meta__ = {
 [node name="Panel" type="Panel" parent="."]
 margin_right = 250.0
 margin_bottom = 100.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="NotificationDuration" type="Timer" parent="."]
 wait_time = 5.0
