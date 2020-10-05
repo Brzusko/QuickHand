@@ -1,4 +1,9 @@
 extends Node2D
+
+var dict = {}
+signal request_complete(is_failed)
+signal function_complete(outputs)
+
 #Server creation
 func create_server():
 	var server_port = 7171;
@@ -20,9 +25,6 @@ func create_client():
 	get_tree().network_peer = peer
 	
 	pass
-var dict = {}
-signal request_complete(is_failed)
-signal function_complete(outputs)
 
 #Server registration
 func register_server(address,port,s_name,players,count):
@@ -81,11 +83,11 @@ func _on_HTTPRequest_request_completed(result, response_code, headers, body):
 			print("Something goes wrong with parsing data");
 			emit_signal("request_complete", true)
 			return;
-		print(dict.result);
-	pass
-
-
-
+		#print("Write ",dict.result);
+		emit_signal("request_complete", false)
+	else:
+		print("Connection error: ",response_code)
+		emit_signal("request_complete", true)
 
 func server_ping(ip,port):
 	
@@ -106,7 +108,6 @@ func server_ping(ip,port):
 	pass;
 
 func _on_Server_Ping_request_completed(result, response_code, headers, body):
-	
 	
 	#Json to dictionary
 	var dict = {}
@@ -133,9 +134,3 @@ func _on_Server_Ping_request_completed(result, response_code, headers, body):
 func _on_Ping_timeout():
 	server_ping("127.0.0.1",7171);
 	pass
-		#print("Write ",dict.result);
-		emit_signal("request_complete", false)
-	else:
-		print("Connection error: ",response_code)
-		emit_signal("request_complete", true)
-
