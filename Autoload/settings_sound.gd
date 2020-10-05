@@ -16,30 +16,14 @@ func _ready():
 	save_settings()
 
 func load_settings():
-	var file = File.new()
+	var temp = FileIo.read(path)
 	
-	if not file.file_exists(path):
+	if not temp:
 		reset_settings()
-		return
-	
-	file.open(path, File.READ)
-	
-	var text = file.get_as_text()
-	
-	settings = parse_json(text)
-	
-	file.close()
+	else: settings = temp
 
 func save_settings():
-	var file
-	
-	file = File.new()
-	
-	file.open(path, File.WRITE)
-	
-	file.store_line(to_json(settings))
-	
-	file.close()
+	FileIo.write(settings, path)
 
 func reset_settings():
 	settings = defaultSettings
