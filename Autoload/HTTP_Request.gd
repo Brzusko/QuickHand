@@ -26,6 +26,7 @@ func create_client():
 	
 	pass
 
+
 #Server registration
 func register_server(address,port,s_name,players,count):
 	
@@ -84,9 +85,6 @@ func _on_HTTPRequest_request_completed(result, response_code, headers, body):
 		emit_signal("request_complete")
 		print(dict.result);
 	pass
-
-
-
 
 func server_ping(ip,port):
 	
