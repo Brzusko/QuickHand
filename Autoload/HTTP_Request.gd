@@ -1,9 +1,15 @@
 extends Node2D
 
-var dict = {}
+var dict = {};
+var players_names = [];
 var error_code
 signal request_complete(is_failed)
 signal function_complete(outputs)
+
+func _ready():
+	get_tree().connect("network_peer_connected", self, "_player_connected");
+	get_tree().connect("network_peer_disconnected", self, "_player_disconnected")
+	pass
 
 #Server creation
 func create_server():
@@ -13,6 +19,9 @@ func create_server():
 	var peer = NetworkedMultiplayerENet.new();
 	peer.create_server(server_port, max_slots);
 	get_tree().network_peer = peer
+	
+	var dict_player = {"player_name": "Server", "id": peer.get_unique_id()}
+	players_names.append(dict_player);
 	
 	register_server("127.0.0.1",server_port,"Testing",max_slots,3);
 	
@@ -93,14 +102,7 @@ func _on_HTTPRequest_request_completed(result, response_code, headers, body):
 
 func server_ping(ip,port):
 	
-	var data = {
-		"players": [
-			{"player_name": "Test 1", "id": 1231},
-			{"player_name": "Test 2", "id": 12331}
-	]
-	};
-	
-	#print(data.players);
+	var data = {"players": players_names};
 	
 	#Players dictionary to json
 	var query = JSON.print(data);
@@ -135,4 +137,23 @@ func _on_Server_Ping_request_completed(result, response_code, headers, body):
 
 func _on_Ping_timeout():
 	server_ping("127.0.0.1",7171);
+	pass
+
+func _player_connected(id):
+	rpc_id(id, "register_player", "Maro");
+	pass
+
+func _player_disconnected(id):
+	var remove;
+	
+	for p in players_names:
+		if p.id == id:
+			remove = p;
+	
+	players_names.erase(remove);
+	pass
+
+remote func register_player(my_info):
+	var dict_player = {"player_name": my_info, "id": get_tree().get_rpc_sender_id()}
+	players_names.append(dict_player);
 	pass

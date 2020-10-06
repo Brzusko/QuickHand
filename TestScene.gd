@@ -1,8 +1,9 @@
 extends Node2D
 
-func _ready():
+func _on_Button_pressed():
 	HTTP_Request.create_server();
-	#HTTP_Request.create_client();
-	pass 
+	pass
 
-
+func _on_Button2_pressed():
+	HTTP_Request.create_client();
+	pass
