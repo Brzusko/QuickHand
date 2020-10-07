@@ -16,6 +16,7 @@ _global_script_class_icons={
 [application]
 
 config/name="QuickHand"
+run/main_scene="res://Scenes/Main_Menu.tscn"
 config/icon="res://icon.png"
 
 [autoload]
@@ -28,5 +29,4 @@ NotificationNode="*res://Autoload/NotificationNode.tscn"
 [rendering]
 
 vram_compression/import_etc=true
-vram_compression/import_etc2=false
 environment/default_environment="res://default_env.tres"

@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Scenes/test2.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/NotificationPanel.tscn" type="PackedScene" id=2]
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
@@ -39,6 +40,12 @@ text = "Success"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Margin" parent="." instance=ExtResource( 2 )]
+margin_left = 395.107
+margin_top = 125.716
+margin_right = 645.107
+margin_bottom = 225.716
 [connection signal="pressed" from="Error" to="." method="_on_Error_pressed"]
 [connection signal="pressed" from="Info" to="." method="_on_Info_pressed"]
 [connection signal="pressed" from="Success" to="." method="_on_Success_pressed"]

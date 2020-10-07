@@ -10,6 +10,7 @@ bg_color = Color( 1, 1, 1, 0.352941 )
 bg_color = Color( 0, 0, 0, 0 )
 
 [node name="Margin" type="MarginContainer"]
+modulate = Color( 1, 1, 1, 0 )
 margin_right = 250.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 250, 100 )

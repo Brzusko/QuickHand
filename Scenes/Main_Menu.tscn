@@ -38,25 +38,34 @@ margin_right = 63.0
 margin_top = 30.0
 margin_right = 63.0
 margin_bottom = 150.0
-size_flags_horizontal = 4
-size_flags_vertical = 4
+size_flags_horizontal = 6
+size_flags_vertical = 6
 custom_constants/separation = 30
 
 [node name="Play" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer2"]
 margin_right = 63.0
 margin_bottom = 20.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
 text = "Play"
 
 [node name="Settings" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer2"]
 margin_top = 50.0
 margin_right = 63.0
 margin_bottom = 70.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
 text = "Settings"
 
 [node name="Exit" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer2"]
 margin_top = 100.0
 margin_right = 63.0
 margin_bottom = 120.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
 text = "Exit"
 
 [node name="PopupPanel" parent="." instance=ExtResource( 2 )]

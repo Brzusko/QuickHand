@@ -5,6 +5,8 @@
 [node name="Control" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -13,10 +15,13 @@ __meta__ = {
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
-margin_left = 757.98
-margin_top = 13.6326
-margin_right = 1007.98
-margin_bottom = 584.633
+margin_left = 759.808
+margin_top = 13.2
+margin_right = 1009.81
+margin_bottom = 588.2
+rect_min_size = Vector2( 250, 575 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
 alignment = 2
 __meta__ = {
 "_edit_use_anchors_": false

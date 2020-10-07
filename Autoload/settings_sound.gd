@@ -16,7 +16,7 @@ func _ready():
 	save_settings()
 
 func load_settings():
-	var temp = FileIo.read(path)
+	var temp = FileIo.read(path, false)
 	
 	if not temp:
 		reset_settings()
